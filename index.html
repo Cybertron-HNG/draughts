@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Draughts · start.ng</title>
+  <meta name="description" content="Play chess with a friend, find a match, or play the bot. Free in your browser on start.ng.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://start.ng/kit.js" defer></script>
+</head>
+<body>
+  <main id="app" class="wide">
+    <h1>Draughts</h1>
+
+    <!-- the lobby -->
+    <section id="lobby" aria-labelledby="lobby-title">
+      <p class="lead" id="lobby-title">Capture all their pieces, or leave them with no move. Play a friend, find a match, or play the bot.</p>
+      <p class="invite" id="invite" hidden></p>
+      <div class="buttons">
+        <button type="button" id="friend" class="primary">Play a friend</button>
+        <button type="button" id="match">Find a match <span class="count" id="online" hidden></span></button>
+        <button type="button" id="bot">Play the bot</button>
+      </div>
+      <form id="join" class="join" autocomplete="off">
+        <label for="code">Have a code?</label>
+        <input id="code" name="code" maxlength="6" autocapitalize="characters" spellcheck="false" placeholder="K7M2QX" aria-describedby="join-note">
+        <button type="submit">Join</button>
+      </form>
+      <p class="note" id="join-note">Draughts needs you signed in with start.ng, so your game is kept if you drop out. Captures are compulsory.</p>
+      <p class="problem" id="lobby-problem" role="status" hidden></p>
+      <button type="button" id="signin" hidden>Sign in with start.ng</button>
+    </section>
+
+    <!-- waiting for a friend or a match -->
+    <section id="waiting" hidden>
+      <p class="lead" id="waiting-title">Waiting for a friend</p>
+      <div class="code-box" id="code-box" hidden>
+        <span class="code" id="room-code" aria-label="Room code"></span>
+        <button type="button" id="copy">Copy invite link</button>
+      </div>
+      <p class="note" id="waiting-note"></p>
+      <div class="buttons">
+        <button type="button" id="wait-bot">Play the bot instead</button>
+        <button type="button" id="wait-cancel">Cancel</button>
+      </div>
+    </section>
+
+    <!-- the game -->
+    <section id="game" hidden aria-label="The game">
+      <div class="players" id="players"></div>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+      <div class="dr" id="board" role="grid" aria-label="Draughts board"></div>
+      <p class="note" id="game-note" role="status" aria-live="polite"></p>
+      <div class="buttons" id="after" hidden>
+        <button type="button" id="share">Share on X</button>
+        <button type="button" id="back" class="primary">Back to the lobby</button>
+      </div>
+      <button type="button" id="resign" class="link">Resign</button>
+    </section>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
