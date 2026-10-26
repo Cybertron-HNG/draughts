@@ -79,6 +79,7 @@
     r.on('open', () => note(''));
     r.on('error', (m) => note(m.message));
     r.on('closed', (m) => leaveRoom(reasonText(m.reason)));
+    StartngExtras.watch(r); // sounds, the "play again?" popup, and the waiting spinner (extras.js)
     render();
   }
 
@@ -98,6 +99,7 @@
 
   function leaveRoom(message) {
     room?.leave();
+    StartngExtras.reset();
     room = null;
     path = [];
     history.replaceState(null, '', location.pathname);
